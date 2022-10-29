@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from './../../../hooks/useForm';
 import { useNavigate } from 'react-router-dom';
 import { createUserFromDb } from '../../../services/userServices';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
+import Swal from 'sweetalert2'
 
 export const RegisterPage = () => {
 
@@ -32,17 +32,26 @@ export const RegisterPage = () => {
       password.length <= 1
     ) return;
       const result =await createUserFromDb(formState)
-
       console.log(result)
-      Swal.fire({
-        title: 'Error!',
-        text: 'Do you want to continue',
-        icon: 'error',
-        confirmButtonText: 'Cool'
-      })
-    // navigate("/login", {
-    //   replace: false,
-    // });
+      if(result.code === "bad request"){
+        Swal.fire({
+          title: 'Error!',
+          text: '',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+        onResetForm()
+      }else{
+        Swal.fire({
+          title: 'User created succefuly!',
+          text: '',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+        navigate("/login", {
+          replace: false,
+        });
+      }
   };
 
   const onCancel = () =>{

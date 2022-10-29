@@ -25,10 +25,9 @@ export const LoginPage = () => {
     e.preventDefault();
     if (email.length <= 1 || password.length <= 1) return;
 
-    const userData = await loginFromDb(email, password)
+    const userData = await loginFromDb(email, password)  
     
-  
-    if(userData.user){
+    if(userData.username){
       dispatch(onLogin(userData))
       navigate('/', {replace:false})
     }else{

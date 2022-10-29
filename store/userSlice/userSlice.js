@@ -18,30 +18,23 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     onLogin: (state, { payload }) => {
+      console.log(payload)
       if (!payload) return;
 
-      const { user, token } = payload;
-      //let newState = { ...state };
-      state.user = {...user, isActive: true}
-      // state.user = {
-      //   isActive: true,
-      //   name: user.name,
-      //   username: user.username,
-      //   email: user.email,
-      //   password: user.password,
-      //   userID: user._id,
-      //   token,
-      // }
-
+      const { username, token, _id} = payload;
+      state.user = {
+         isActive: true,
+        username,
+        _id
+      }
       return state;
     },
     onLogout: (state) => {
-      let newState = { ...state };
-      newState.user = {
-        isActive: false,
+      state.user ={
+        isActive:  false,
         ...initialState.user
-      };
-      return newState;
+      }
+      return state
     },
   },
 });
