@@ -1,33 +1,29 @@
-import { getAllArticles, getAnArticle } from '../store/articleSlice/articleSlice';
+import { deleteToApi, getFromAPi, postToApi, putToApi } from './connection';
 
 const getAllArticleFromDb =() =>{
-    return async (dispatch) =>{
-        const articles = await fetch('http://localhost:4000/articles',{
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-              }
-        }).then(res => res.json())
-        dispatch(getAllArticles(articles))
-
-    }    
+    return getFromAPi('/articles').then(res => res.json()) 
 }
 
-const getArticleByIdFomDb = (id) =>{
-    return async (dispatch) =>{
-        const article = await fetch('http://localhost:4000/articles/'+ id,{
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-              }
-        }).then(res => res.json())
-        dispatch(getAnArticle(article))
-    }
+const getArticleByIdFomDb = (articleId) =>{
+    return getFromAPi(`/articles/${articleId}`).then(res => res.json())
+}
+
+const saveArticle = (article)=>{
+    return postToApi('/articles',article)
+}
+
+const deleteArticle = (articleId)=>{
+    return deleteToApi(`/articles/${articleId}`);
+}
+
+const updateArticle = (articleId,body)=>{
+    return putToApi(`/articles/${articleId}`, body);
 }
 
 export {
     getAllArticleFromDb,
-    getArticleByIdFomDb
+    getArticleByIdFomDb,
+    saveArticle,
+    deleteArticle,
+    updateArticle
 }

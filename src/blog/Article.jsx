@@ -2,25 +2,30 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getArticleByIdFomDb } from "../../services/article.services";
+import { setSelectedArticle } from "../../store/articleSlice/articleSlice";
 
 
 export const Article = ({ article }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { _id,title, subtitle, description } = article
+  const { _id,title, subtitle, description, image } = article
 
   const onClick = () =>{
-    dispatch(getArticleByIdFomDb(_id))
-    navigate(`/articleView/${_id}`,{
-      replace: true
+    
+    getArticleByIdFomDb(_id).then((article)=>{
+      dispatch(setSelectedArticle(article))
+      navigate(`/articleView/${_id}`,{
+        replace: true
+      })
     })
+
   }
 
   return (
     <>
       <div className="card">
         <div className="card-header">
-          <img src="..." className="card-img-bottom" alt="..." />
+          <img src={image} className="card-img-bottom" alt="..." />
         </div>
         <div className="card-body">
           <h5 className="card-title">{title}</h5>

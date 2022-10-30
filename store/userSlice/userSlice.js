@@ -18,10 +18,11 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     onLogin: (state, { payload }) => {
-      console.log(payload)
+      
       if (!payload) return;
 
       const { username, token, _id} = payload;
+      localStorage.setItem('user', JSON.stringify(payload));
       state.user = {
          isActive: true,
         username,
@@ -34,6 +35,7 @@ export const userSlice = createSlice({
         isActive:  false,
         ...initialState.user
       }
+      localStorage.setItem('user', '');
       return state
     },
   },

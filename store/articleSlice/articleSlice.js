@@ -19,11 +19,11 @@ export const articleSlice = createSlice({
     name: "article",
     initialState,
     reducers:{
-        getAllArticles : (state, {payload}) =>{
+        setArticles : (state, {payload}) =>{
             state.articles = payload
             return state
         },
-        getAnArticle: (state, {payload}) =>{
+        setSelectedArticle: (state, {payload}) =>{
             state.article = {
                 ...payload
             }
@@ -34,4 +34,4 @@ export const articleSlice = createSlice({
     }
 })
 
-export const {getAllArticles, getAnArticle} = articleSlice.actions;
+export const {setArticles, setSelectedArticle} = articleSlice.actions;
