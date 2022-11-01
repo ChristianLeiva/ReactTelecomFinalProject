@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import { onLogin } from '../store/userSlice/userSlice';
 import { BlogRouter } from './router/BlogRouter';
-import Swal from 'sweetalert2'
 
 export const BlogApp = () => {
 
@@ -16,8 +15,8 @@ export const BlogApp = () => {
   },[])
 
   return (
-    <>  
+    <div className='vh-100'>  
         <BlogRouter/>
-    </>
+    </div>
   )
 }

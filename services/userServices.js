@@ -1,3 +1,5 @@
+import { deleteToApi, postToApi, putToApi } from "./connection"
+
 const BASE_PATH = "http://localhost:4000"
 
 const loginFromDb = (email, password) =>{
@@ -15,19 +17,22 @@ const loginFromDb = (email, password) =>{
 
 }
 
-const createUserFromDb = (data) =>{
-  return fetch(`${BASE_PATH}/users`, {
-    method: 'POST',
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(data)
-}).then(res => res.json())
+const createUserFromDb = (body) =>{
+return postToApi(`/users`, body)
+}
+
+const updateUser = (userId, body) =>{
+  return putToApi(`/users/${userId}`, body)
+} 
+
+const deleteUser = (userId) =>{
+  return deleteToApi(`/users/${userId}`)
 }
 
 
 export {
     loginFromDb,
-    createUserFromDb
+    createUserFromDb,
+    updateUser,
+    deleteUser
 }

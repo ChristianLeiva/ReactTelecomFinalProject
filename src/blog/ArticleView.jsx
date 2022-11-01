@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navbar } from './../components/Navbar';
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment'
 import Swal from 'sweetalert2'
@@ -8,14 +7,14 @@ import { deleteArticle, getArticleByIdFomDb } from '../../services/article.servi
 import CommentList from './CommentList';
 import { setSelectedArticle } from '../../store/articleSlice/articleSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { CommentForm } from './CommentForm';
 
 export const ArticleView = () => {
   const navigate = useNavigate();
   const {isActive, _id:_userId} = useSelector( (state) => state.users.user)
-  const {title, subtitle, description, image, createdAt, userID, createdBy, _id: _articleId} = useSelector( (state) => state.articles.article)
+  const {title, subtitle, description, image, createdAt, userID, createdBy, _id: _articleId, comments} = useSelector( (state) => state.articles.article)
   let date = moment.utc(createdAt, "YYYY-MM-DD").format('DD-MM-YYYY h:mma')
   let {id} = useParams();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,8 +49,7 @@ export const ArticleView = () => {
 
   return (
     <LoadingSpinner isLoading={!_articleId}>
-    <>
-      
+    <div className='vh-100'>      
         <div className="container">
           <div className="card mb-3">
             <img
@@ -69,18 +67,22 @@ export const ArticleView = () => {
               </p>
             </div>
             {(isActive && _userId === userID) ? (
-              <div className="d-flex justify-content-end">
-                <button className="btn btn-warning me-2" onClick={handleEdit}>Edit</button>
-                <button className="btn btn-danger me-2" onClick={handleDelete}>Delete</button>
+              <div className="d-flex justify-content-end mb-2">
+                <button className="btn btn-warning me-2" onClick={handleEdit}><i className="bi bi-pencil"></i></button>
+                <button className="btn btn-danger me-2"  onClick={handleDelete}><i className="bi bi-trash3"></i></button>
               </div>
             ) : (
+              
               ""
             )}
           </div>
-          <CommentList />
+          <CommentForm _articleId={_articleId}/>
+          {
+            (comments)&&comments.map((comment) => <CommentList key={comment._id} comments={comment}/>)
+          }
         </div>
       
-    </>
+    </div>
     </LoadingSpinner>
   );
 }

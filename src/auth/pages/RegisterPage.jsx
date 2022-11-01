@@ -32,7 +32,6 @@ export const RegisterPage = () => {
       password.length <= 1
     ) return;
       const result =await createUserFromDb(formState)
-      console.log(result)
       if(result.code === "bad request"){
         Swal.fire({
           title: 'Error!',

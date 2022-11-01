@@ -18,6 +18,11 @@ export const Navbar = () => {
     dispatch(onLogout());
   };
 
+  const handleRegister = () =>{
+    return navigate('/register')
+    
+  }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-primary text-white px-3">
@@ -54,18 +59,21 @@ export const Navbar = () => {
 
           {isActive ? (
             <div>
-              <span
-                className="mx-2 fw-semibold"
+              <Link
+                to='/userPage'
+                className="mx-2 fw-bold"
                 style={{
+                  textDecoration: "none",
                   color: "inherit",
                   fontWeight: "bolder",
+                  fontSize: "17px"
                 }}
               >
-                {" "}
                 {username}
-              </span>
+              </Link>
               <button className="btn btn-danger" onClick={isLogout}>
                 Logout
+                <i className="ms-2 bi bi-box-arrow-right"></i>
               </button>
             </div>
           ) : (
@@ -74,7 +82,7 @@ export const Navbar = () => {
               <button className="btn btn-success" onClick={isLogin}>
                 Login
               </button>{" "}
-              <button className="btn btn-success">Register</button>
+              <button className="btn btn-success" onClick={handleRegister}>Register</button>
             </div>
           )}
         </div>

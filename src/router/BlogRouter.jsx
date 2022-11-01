@@ -6,6 +6,8 @@ import { BlogPage } from './../blog/BlogPage';
 import { ArticleView } from './../blog/ArticleView';
 import { Navbar } from "../components/Navbar";
 import { ArticleEditing } from "../blog/ArticleEditing";
+import { UserPage } from './../blog/UserPage';
+import { Footer } from "../components/Footer";
 
 
 
@@ -19,12 +21,15 @@ export const BlogRouter = () => {
             <Route path="/articleView/:id" element={<ArticleView/>}/>
             <Route path="/articleEditing" element={<ArticleEditing/>}/>
             <Route path="/newArticle" element={<NewArticle/>}/>
+            <Route path="/userPage" element={<UserPage/>}/>
+            
 
             {/* authentication */}
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/register" element={<RegisterPage/>}/>
 
         </Routes>
+        <Footer/>
     </>
   )
 }

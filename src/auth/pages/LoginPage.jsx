@@ -27,7 +27,8 @@ export const LoginPage = () => {
 
     const userData = await loginFromDb(email, password)  
     
-    if(userData.username){
+    
+    if(userData.user){
       dispatch(onLogin(userData))
       navigate('/', {replace:false})
     }else{

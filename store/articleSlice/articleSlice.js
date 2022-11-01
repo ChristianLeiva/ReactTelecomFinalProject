@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    isUpdatingArticle: null,
     articles : [],
+    byCreator: [],
     article : {
         _id: "",
         title: "",
@@ -28,10 +28,12 @@ export const articleSlice = createSlice({
                 ...payload
             }
             return state
+        },
+        setArticlesByCreator: (state, {payload}) =>{
+              state.byCreator = payload
+            return state
         }
-
-
     }
 })
 
-export const {setArticles, setSelectedArticle} = articleSlice.actions;
+export const {setArticles, setSelectedArticle, setArticlesByCreator} = articleSlice.actions;

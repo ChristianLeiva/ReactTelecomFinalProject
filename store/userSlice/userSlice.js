@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isUpdating: null,
   user: {
     isActive: false,
     name: "",
@@ -18,15 +17,18 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     onLogin: (state, { payload }) => {
-      
       if (!payload) return;
 
-      const { username, token, _id} = payload;
+      
+      const { username, name, email, password, token, _id} = payload.user;
       localStorage.setItem('user', JSON.stringify(payload));
       state.user = {
          isActive: true,
         username,
-        _id
+        _id, 
+        name,
+        email, 
+        password
       }
       return state;
     },

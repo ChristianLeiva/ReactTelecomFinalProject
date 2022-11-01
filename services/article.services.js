@@ -20,10 +20,20 @@ const updateArticle = (articleId,body)=>{
     return putToApi(`/articles/${articleId}`, body);
 }
 
+const getArticleByCreator = () =>{
+    return getFromAPi('/articles/articlesByCreator').then(res => res.json())
+}
+
+const addComment = (articleId,body) =>{
+    return postToApi(`/articles/comment/${articleId}`, body )
+}
+
 export {
     getAllArticleFromDb,
     getArticleByIdFomDb,
     saveArticle,
     deleteArticle,
-    updateArticle
+    updateArticle,
+    addComment,
+    getArticleByCreator
 }

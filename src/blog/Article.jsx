@@ -23,7 +23,7 @@ export const Article = ({ article }) => {
 
   return (
     <>
-      <div className="card">
+      <div className="card mt-2">
         <div className="card-header">
           <img src={image} className="card-img-bottom" alt="..." />
         </div>
@@ -32,8 +32,7 @@ export const Article = ({ article }) => {
           <p className="card-text">{subtitle}</p>
           <button           
            className="btn btn-primary"
-           onClick={onClick}
-          
+           onClick={onClick}          
            >
             view more...
           </button>

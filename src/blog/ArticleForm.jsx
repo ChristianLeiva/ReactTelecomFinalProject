@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "../../hooks/useForm";
 import { saveArticle, updateArticle } from "../../services/article.services";
 import { useNavigate } from 'react-router-dom';
-import { Navbar } from "./../components/Navbar";
 import Swal from 'sweetalert2'
 
 export const ARTICLE_FORM_MODES = {
@@ -60,11 +59,10 @@ const ArticleForm = ({mode = ARTICLE_FORM_MODES.creating, article}) => {
     }
   
     return (
-      <>
-        
-        <div className="container mt-5">
+      <div className="vh-100">        
+        <div className="container mt-5 bg-light p-3">
         <h2 className="fs-3 text-center">{ mode === ARTICLE_FORM_MODES.creating ? 'New article' : 'Edit article'}</h2>
-          <div className="mb-3 border border-3 rounded m-3">
+          <div className="border border-3 rounded">
             <div className="p-2">
               <form action="" className="" onSubmit={handleSubmit}>
                 <div className="row">
@@ -113,7 +111,7 @@ const ArticleForm = ({mode = ARTICLE_FORM_MODES.creating, article}) => {
             </div>
           </div>
         </div>
-      </>)
+      </div>)
 
 }
 
