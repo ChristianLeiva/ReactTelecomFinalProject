@@ -15,7 +15,7 @@ export const BlogApp = () => {
   },[])
 
   return (
-    <div className='vh-100'>  
+    <div className=''>  
         <BlogRouter/>
     </div>
   )

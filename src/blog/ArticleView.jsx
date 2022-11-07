@@ -53,7 +53,7 @@ export const ArticleView = () => {
 
   return (
     <LoadingSpinner isLoading={!_articleId}>
-    <div className='vh-100'>      
+    <div className=''>      
         <div className="container">
           <div className="card mb-3">
             <img
@@ -71,32 +71,36 @@ export const ArticleView = () => {
               </p>
             </div>
             {(isActive && _userId === userID) ? (
+            
               <div className="d-flex justify-content-end mb-2">
                 <button className="btn btn-warning me-2" onClick={handleEdit}><i className="bi bi-pencil"></i></button>
                 <button className="btn btn-danger me-2"  onClick={handleDelete}><i className="bi bi-trash3"></i></button>
-              </div>
+              </div>              
             ) : (
               
               ""
             )}
-            <div className='d-flex justify-content-start mb-2'>
-                  <button className='btn' onClick={handleLikeClick}>
-                  {
-                    likes && likes.some((like) => like.username === username) ? 
-                    <i className="bi bi-hand-thumbs-up-fill">{likes.length}</i> :
-                    <i className="bi bi-hand-thumbs-up">{likes && likes.length}</i>
 
-                  }
-                  {' '}
-                  
-                  </button>
-            </div>
+            {
+              isActive ? 
+              <div className='d-flex justify-content-start mb-2'>
+                    <button className='btn' onClick={handleLikeClick}>
+                    {
+                      likes && likes.some((like) => like.username === username) ? 
+                      <i className="bi bi-hand-thumbs-up-fill">{likes.length}</i> :
+                      <i className="bi bi-hand-thumbs-up">{likes && likes.length}</i>
+                    }                 
+                    </button>
+              </div> : 
+              " "
+            }
 
           </div>
-          <CommentForm _articleId={_articleId}/>
-          {
-            (comments)&&comments.map((comment) => <CommentList key={comment._id} comments={comment}/>)
-          }
+          <CommentForm _articleId={_articleId}>
+            {
+              (comments)&&comments.map((comment) => <CommentList key={comment._id} comments={comment}/>)
+            }
+          </CommentForm>
         </div>
       
     </div>

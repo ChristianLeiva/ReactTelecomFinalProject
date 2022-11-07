@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { setSelectedArticle } from "../../store/articleSlice/articleSlice";
 
-export const CommentForm = ({_articleId}) => {
+export const CommentForm = ({_articleId, children}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {isActive} = useSelector((state) => state.users.user)
@@ -35,8 +35,8 @@ export const CommentForm = ({_articleId}) => {
   }
   return (
     <>
-      <div className="mb-3 border border-3 rounded p-2 bg-light" >
-        <form>
+      <div className="mb-3 border border-3 rounded p-2 bg-light">
+        <form className="mb-5">
           <input
             type="text"
             className="form-control mb-2"
@@ -46,19 +46,20 @@ export const CommentForm = ({_articleId}) => {
             onChange={onInputChange}
           />
           <div className="mt-3 d-flex justify-content-end">
-            <button 
-                type="button"
-                className="btn btn-danger me-2"
-                onClick={handleCancel}
+            <button
+              type="button"
+              className="btn btn-danger me-2"
+              onClick={handleCancel}
             >
               Cancel
             </button>
-            <button
-             className="btn btn-success"
-             onClick={handleSave}
-             >Save</button>
+            <button className="btn btn-success" onClick={handleSave}>
+              Save
+            </button>
           </div>
         </form>
+
+        <div>{children}</div>
       </div>
     </>
   );

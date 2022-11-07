@@ -19,7 +19,7 @@ export const UserPage = () => {
     }, [])
     
   return (
-    <div className='vh-100'>
+    <div className=''>
         <UserData user={user} />
         <div className="container-fluid mt-5">
             {

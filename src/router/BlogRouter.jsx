@@ -15,21 +15,23 @@ export const BlogRouter = () => {
   return (
     <>
         <Navbar />
-        <Routes>
-            <Route path="/*" element={<Navigate to="/home"/>}/>
-            <Route path="/home" element={<BlogPage/>}/>
-            <Route path="/articleView/:id" element={<ArticleView/>}/>
-            <Route path="/articleEditing" element={<ArticleEditing/>}/>
-            <Route path="/newArticle" element={<NewArticle/>}/>
-            <Route path="/userPage" element={<UserPage/>}/>
-            
+        <div >
+          <Routes>
+              <Route path="/*" element={<Navigate to="/home"/>}/>
+              <Route path="/home" element={<BlogPage/>}/>
+              <Route path="/articleView/:id" element={<ArticleView/>}/>
+              <Route path="/articleEditing" element={<ArticleEditing/>}/>
+              <Route path="/newArticle" element={<NewArticle/>}/>
+              <Route path="/userPage" element={<UserPage/>}/>
+              
 
-            {/* authentication */}
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/register" element={<RegisterPage/>}/>
+              {/* authentication */}
+              <Route path="/login" element={<LoginPage/>}/>
+              <Route path="/register" element={<RegisterPage/>}/>
+          </Routes>
 
-        </Routes>
-        {/* <Footer/> */}
+        </div>
+        <Footer/>
     </>
   )
 }

@@ -62,7 +62,7 @@ export const RegisterPage = () => {
 
   return (
     <div className="container-fluid">
-      <div className="d-flex justify-content-center align-items-center vh-100 bg-info">
+      <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="bg-white p-5 w-25">
           <h1 className="text-center fw-bold">Register</h1>
           <hr />
