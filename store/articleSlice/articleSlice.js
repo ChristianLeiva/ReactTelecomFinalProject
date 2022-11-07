@@ -24,9 +24,8 @@ export const articleSlice = createSlice({
             return state
         },
         setSelectedArticle: (state, {payload}) =>{
-            state.article = {
-                ...payload
-            }
+            state.article = payload
+            
             return state
         },
         setArticlesByCreator: (state, {payload}) =>{

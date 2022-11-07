@@ -1,11 +1,13 @@
 import React from "react";
 import { useForm } from "../../hooks/useForm";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addComment } from "../../services/article.services";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { setSelectedArticle } from "../../store/articleSlice/articleSlice";
 
 export const CommentForm = ({_articleId}) => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const {isActive} = useSelector((state) => state.users.user)
   const { formState, onInputChange, comment, onResetForm } = useForm({
@@ -20,18 +22,15 @@ export const CommentForm = ({_articleId}) => {
     e.preventDefault()
     if(!isActive) return navigate('/login')
 
-    addComment(_articleId, formState).then(()=>{
+    addComment(_articleId, formState).then((res)=>{
         Swal.fire({
             title: `Comment added succefuly!`,
             text: '',
             icon: 'success',
             confirmButtonText: 'Cool'
-            }).then(()=>{
-            navigate(`/articleView/${_articleId}`, {
-                replace: false,
-            });
-            })
+            }).then(()=>dispatch(setSelectedArticle(res)))
     })
+    onResetForm()
 
   }
   return (

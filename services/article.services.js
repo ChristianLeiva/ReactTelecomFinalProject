@@ -25,9 +25,13 @@ const getArticleByCreator = () =>{
 }
 
 const addComment = (articleId,body) =>{
-    return postToApi(`/articles/comment/${articleId}`, body )
+    return postToApi(`/articles/comment/${articleId}`, body ).then(res => res.json())
 }
 
+
+const addLike = (articleId) =>{
+    return postToApi(`/articles/like/${articleId}`).then(res => res.json())
+}
 export {
     getAllArticleFromDb,
     getArticleByIdFomDb,
@@ -35,5 +39,6 @@ export {
     deleteArticle,
     updateArticle,
     addComment,
-    getArticleByCreator
+    getArticleByCreator,
+    addLike
 }

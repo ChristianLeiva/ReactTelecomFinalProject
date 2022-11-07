@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment'
 import Swal from 'sweetalert2'
-import { deleteArticle, getArticleByIdFomDb } from '../../services/article.services';
+import { deleteArticle, getArticleByIdFomDb, addLike } from '../../services/article.services';
 import CommentList from './CommentList';
 import { setSelectedArticle } from '../../store/articleSlice/articleSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -11,8 +11,8 @@ import { CommentForm } from './CommentForm';
 
 export const ArticleView = () => {
   const navigate = useNavigate();
-  const {isActive, _id:_userId} = useSelector( (state) => state.users.user)
-  const {title, subtitle, description, image, createdAt, userID, createdBy, _id: _articleId, comments} = useSelector( (state) => state.articles.article)
+  const {isActive, _id:_userId, username} = useSelector( (state) => state.users.user)
+  const {title, subtitle, description, image, createdAt, userID, createdBy, _id: _articleId, comments, likes} = useSelector( (state) => state.articles.article)
   let date = moment.utc(createdAt, "YYYY-MM-DD").format('DD-MM-YYYY h:mma')
   let {id} = useParams();
   const dispatch = useDispatch();
@@ -47,6 +47,10 @@ export const ArticleView = () => {
     navigate('/articleEditing')
   }
 
+  const handleLikeClick = () =>{
+    addLike(_articleId).then(res => dispatch(setSelectedArticle(res)))
+  }
+
   return (
     <LoadingSpinner isLoading={!_articleId}>
     <div className='vh-100'>      
@@ -75,6 +79,19 @@ export const ArticleView = () => {
               
               ""
             )}
+            <div className='d-flex justify-content-start mb-2'>
+                  <button className='btn' onClick={handleLikeClick}>
+                  {
+                    likes && likes.some((like) => like.username === username) ? 
+                    <i className="bi bi-hand-thumbs-up-fill">{likes.length}</i> :
+                    <i className="bi bi-hand-thumbs-up">{likes && likes.length}</i>
+
+                  }
+                  {' '}
+                  
+                  </button>
+            </div>
+
           </div>
           <CommentForm _articleId={_articleId}/>
           {

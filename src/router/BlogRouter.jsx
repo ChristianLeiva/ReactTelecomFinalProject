@@ -29,7 +29,7 @@ export const BlogRouter = () => {
             <Route path="/register" element={<RegisterPage/>}/>
 
         </Routes>
-        <Footer/>
+        {/* <Footer/> */}
     </>
   )
 }
