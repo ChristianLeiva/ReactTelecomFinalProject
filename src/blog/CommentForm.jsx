@@ -15,7 +15,8 @@ export const CommentForm = ({_articleId, children}) => {
   });
 
   const handleCancel = () =>{
-    alert("cancel")
+    onResetForm()
+    
   }
 
   const handleSave = (e) =>{

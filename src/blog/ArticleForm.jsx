@@ -59,7 +59,7 @@ const ArticleForm = ({mode = ARTICLE_FORM_MODES.creating, article}) => {
     }
   
     return (
-      <div className="">        
+      <div className="vh-100">        
         <div className="container mt-5 bg-light p-3">
         <h2 className="fs-3 text-center">{ mode === ARTICLE_FORM_MODES.creating ? 'New article' : 'Edit article'}</h2>
           <div className="border border-3 rounded">

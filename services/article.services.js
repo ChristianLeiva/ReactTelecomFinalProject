@@ -28,17 +28,22 @@ const addComment = (articleId,body) =>{
     return postToApi(`/articles/comment/${articleId}`, body ).then(res => res.json())
 }
 
-
 const addLike = (articleId) =>{
     return postToApi(`/articles/like/${articleId}`).then(res => res.json())
+}
+
+const getArticleByTitle = (title) =>{
+    return getFromAPi(`/articles/findByTitle/${title}`).then(res => res.json())
+
 }
 export {
     getAllArticleFromDb,
     getArticleByIdFomDb,
+    getArticleByCreator,
+    getArticleByTitle,
     saveArticle,
     deleteArticle,
     updateArticle,
     addComment,
-    getArticleByCreator,
     addLike
 }

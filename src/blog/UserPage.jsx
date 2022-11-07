@@ -21,7 +21,7 @@ export const UserPage = () => {
   return (
     <div className=''>
         <UserData user={user} />
-        <div className="container-fluid mt-5">
+        <div className="container-fluid mt-5 vh-100">
             {
                 (byCreator.length > 0) ? (
                     byCreator.map( article => <Article article={article}/>)

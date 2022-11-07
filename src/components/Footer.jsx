@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-light text-center text-lg-start">
+    <footer className="bg-light text-center text-lg-start mt-5">
       <div
         className="text-center p-3 d-flex justify-content-around"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}

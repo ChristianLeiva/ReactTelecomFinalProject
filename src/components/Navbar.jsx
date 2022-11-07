@@ -16,6 +16,9 @@ export const Navbar = () => {
 
   const isLogout = () => {
     dispatch(onLogout());
+    navigate("home", {
+      replace: true
+    })
   };
 
   const handleRegister = () =>{
@@ -28,6 +31,7 @@ export const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-primary text-white px-3">
         <div className="container-fluid">
           <div>
+          <i class="bi bi-house me-2"></i>
             <Link
               to="/"
               style={{
@@ -41,6 +45,8 @@ export const Navbar = () => {
             </Link>
 
             {isActive ? (
+              <>
+              <i class="bi bi-newspaper me-2"></i>
               <Link
                 to="/newArticle"
                 style={{
@@ -52,6 +58,7 @@ export const Navbar = () => {
               >
                 New Article
               </Link>
+              </>
             ) : (
               " "
             )}
@@ -59,6 +66,7 @@ export const Navbar = () => {
 
           {isActive ? (
             <div>
+              <i class="bi bi-person"></i>
               <Link
                 to='/userPage'
                 className="mx-2 fw-bold"
